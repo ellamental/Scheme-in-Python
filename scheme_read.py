@@ -15,6 +15,9 @@ http://michaux.ca/articles/scheme-from-scratch-introduction
 
 def scheme_read(f):
   f.remove_whitespace()
-  if True:
-    return "Representation of a Scheme type."
+  c = f.getc()
+  if c.isdigit():
+    return "Representation of a Scheme number."
+  else:
+    return "scheme_read: not implemented"
 
