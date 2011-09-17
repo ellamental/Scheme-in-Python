@@ -15,8 +15,7 @@ http://michaux.ca/articles/scheme-from-scratch-introduction
 
 def is_delimiter(c):
   """Is c a valid expression delimiter?"""
-  return (c == ' ' or c == '(' or c == ')' or c == '\"'
-          or c == ';' or c == '\n' or not c)
+  return c in (' ', '(', ')', '\"', ';', '\n') or not c
 
 def read_number(f):
   buf = []
