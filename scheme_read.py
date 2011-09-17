@@ -13,11 +13,26 @@ Bootstrap Scheme by Peter Michaux found at
 http://michaux.ca/articles/scheme-from-scratch-introduction
 """
 
+def is_delimiter(c):
+  """Is c a valid expression delimiter?"""
+  return (c == ' ' or c == '(' or c == ')' or c == '\"'
+          or c == ';' or c == '\n' or not c)
+
+def read_number(f):
+  buf = []
+  c = f.getc()
+  while not is_delimiter(c):
+    buf.append(c)
+    c = f.getc()
+  f.ungetc(c)
+  buf = "".join(buf)
+  return int(buf)
+
 def scheme_read(f):
   f.remove_whitespace()
   c = f.getc()
   if c.isdigit():
-    return "Representation of a Scheme number."
+    f.ungetc(c)
+    return read_number(f)
   else:
     return "scheme_read: not implemented"
-
