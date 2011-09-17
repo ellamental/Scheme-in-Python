@@ -26,7 +26,12 @@ def read_number(f):
     c = f.getc()
   f.ungetc(c)
   buf = "".join(buf)
-  return int(buf)
+  if '.' in buf:
+    return float(''.join(buf))
+  elif '/' in buf:
+    return "rationals not implemented"
+  else:
+    return int(''.join(buf))
 
 def scheme_read(f):
   f.remove_whitespace()
