@@ -36,7 +36,8 @@ def read_number(f):
 def scheme_read(f):
   f.remove_whitespace()
   c = f.getc()
-  if c.isdigit() or (c == '-' and f.peek().isdigit()):
+  if (c.isdigit() or (c == '-' and f.peek().isdigit()) or
+      or (c == '.' and f.peek().isdigit())):
     f.ungetc(c)
     return read_number(f)
   else:
