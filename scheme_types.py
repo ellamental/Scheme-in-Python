@@ -13,3 +13,16 @@ class The_Empty_List():
     return "()"
 
 the_empty_list = The_Empty_List()
+
+class Pair(object):
+  """A pair is a classic Lisp cons cell used to implement lists"""
+  def __init__(self, car, cdr):
+    self.car = car
+    self.cdr = cdr
+  def __iter__(self):
+    x = self
+    while not isinstance(x, The_Empty_List):
+      yield x.car
+      x = x.cdr
+  def __repr__(self):
+    return "(" + ' '.join([str(i) for i in list(self)]) + ")"
