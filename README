@@ -30,7 +30,7 @@ With that out of the way, here's an example session:
     > hello
     Error: Unbound symbol: hello
     > (define hello "world")
-
+    
     > hello
     world
     > (if #t 1 0)
@@ -42,11 +42,11 @@ With that out of the way, here's an example session:
     > ((fn (x) x) 42)
     42
     > (define echo (fn (x) x))
-
+    
     > (echo 42)
     42
     > (define add (fn (x y) (+ x y)))
-
+    
     > (add 3 4)
     7
 
