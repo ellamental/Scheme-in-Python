@@ -1,6 +1,7 @@
 """
 buffered_input.py
 (c)2011 Nick Zarczynski
+License: BSD
 version 0.1
 
 Buff implements getc, ungetc and peek methods similar to those found in C.

@@ -2,6 +2,7 @@
 """
 repl.py
 (c)2011 Nick Zarczynski
+License: BSD
 
 A simple repl
 """

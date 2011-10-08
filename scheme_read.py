@@ -1,6 +1,7 @@
 """
 scheme_read.py
 (c)2011 Nick Zarczynski
+License: BSD
 
 For most code you should import this as: 
 from scheme_read import scheme_read
