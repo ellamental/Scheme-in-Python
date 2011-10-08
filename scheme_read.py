@@ -39,5 +39,13 @@ def scheme_read(f):
       or (c == '.' and f.peek().isdigit())):
     f.ungetc(c)
     return read_number(f)
+  elif c == '#':
+    c = f.getc()
+    if c == 't':
+      return True
+    elif c == 'f':
+      return False
+    else:
+      return "Error boolean value must be #t or #f not #" + c
   else:
     return "scheme_read: not implemented"
