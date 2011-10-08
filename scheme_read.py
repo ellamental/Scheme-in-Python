@@ -15,8 +15,7 @@ http://michaux.ca/articles/scheme-from-scratch-introduction
 
 def is_delimiter(c):
   """Is c a valid expression delimiter?"""
-  return (c == ' ' or c == '(' or c == ')' or c == '\"'
-          or c == ';' or c == '\n' or not c)
+  return c in (' ', '(', ')', '\"', ';', '\n') or not c
 
 def read_number(f):
   buf = []
@@ -27,11 +26,11 @@ def read_number(f):
   f.ungetc(c)
   buf = "".join(buf)
   if '.' in buf:
-    return float(''.join(buf))
+    return float(buf)
   elif '/' in buf:
     return "rationals not implemented"
   else:
-    return int(''.join(buf))
+    return int(buf)
 
 def scheme_read(f):
   f.remove_whitespace()
