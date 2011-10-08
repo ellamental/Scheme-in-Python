@@ -13,9 +13,15 @@ Bootstrap Scheme by Peter Michaux found at
 http://michaux.ca/articles/scheme-from-scratch-introduction
 """
 
+from scheme_types import Symbol
+
 def is_delimiter(c):
   """Is c a valid expression delimiter?"""
   return c in (' ', '(', ')', '\"', ';', '\n') or not c
+
+def is_initial(c):
+  """Is c a valid initial character for an identifier?"""
+  return c.isalpha() or c in '-+*/><=?!&'
 
 def read_number(f):
   buf = []
@@ -54,6 +60,15 @@ def read_character(f):
   else:
     return c
 
+def read_symbol(f):
+  buf = []
+  c = f.getc()
+  while not is_delimiter(c):
+    buf.append(c)
+    c = f.getc()
+  f.ungetc(c)
+  return ''.join(buf)
+
 def scheme_read(f):
   f.remove_whitespace()
   c = f.getc()
@@ -71,5 +86,8 @@ def scheme_read(f):
       return read_character(f)
     else:
       return "Error boolean value must be #t or #f not #" + c
+  elif is_initial(c):
+    f.ungetc(c)
+    return Symbol(read_symbol(f))
   else:
     return "scheme_read: not implemented"
