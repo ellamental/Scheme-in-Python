@@ -69,6 +69,14 @@ def read_symbol(f):
   f.ungetc(c)
   return ''.join(buf)
 
+def read_string(f):
+  buf = []
+  c = f.getc()
+  while c != '\"':
+    buf.append(c)
+    c = f.getc()
+  return ''.join(buf)
+
 def scheme_read(f):
   f.remove_whitespace()
   c = f.getc()
@@ -89,5 +97,7 @@ def scheme_read(f):
   elif is_initial(c):
     f.ungetc(c)
     return Symbol(read_symbol(f))
+  elif c == '\"':
+    return read_string(f)
   else:
     return "scheme_read: not implemented"
