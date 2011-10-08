@@ -32,9 +32,27 @@ def read_number(f):
   else:
     return int(buf)
 
+def read_expected_string(f, s):
+  """Consume expected characters from the input buffer."""
+  expected_chars = list(s)
+  c = f.getc()
+  while expected_chars:
+    if c == expected_chars[0]:
+      expected_chars.pop(0)
+      c = f.getc()
+    else:
+      return "unexpected character"
+
 def read_character(f):
   c = f.getc()
-  return c
+  if c == 's' and f.peek() == 'p':
+    read_expected_string(f, "pace")
+    return ' '
+  elif c == 'n' and f.peek() == 'e':
+    read_expected_string(f, "ewline")
+    return '\n'
+  else:
+    return c
 
 def scheme_read(f):
   f.remove_whitespace()
