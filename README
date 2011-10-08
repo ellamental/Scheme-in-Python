@@ -1,20 +1,14 @@
 This is a simple Scheme interpreter written in Python.
 
-This was created for a tutorial on the incremental development of an 
-interpreter.  The tutorial series was based on an earlier version of this 
-code and can be found at: http://nickzarr.com/blog4/series/scheme-in-python/
-* This series is currently being rewritten.
+The Scheme in Python project is a port of the <a href="http://nickzarr.com/blog4/series/lispy-in-scheme/" title="Lispy in Scheme">Scheme in Scheme</a> project.  The goal is to implement a small subset of Scheme as an interpreter written in Python.
 
-This interpreter is developed around my interpretation of the "languages as 
-libraries" concept (like Racket or PyPy).  The implementation has been kept as 
-simple as possible to make this accessible for the novice programming language 
-researcher.
+There are a number of goals for this project.  First, implementing Scheme in Scheme allowed us to "cheat" a bit by having access to the Scheme reader and data structures.  Using Python as the implementation language will force us to code the reader by hand and create new data structures where there isn't a one-to-one mapping from Scheme to Python.
 
-Scheme in Python does not attempt, in any way, to make a complete 
-implementation of the Scheme programming language.  There is no effort to make 
-it either robust or efficient.  The entire purpose of this implementation is 
-to provide a step-by-step guide to the fundamentals of implementing a 
-programming language.
+There are also two auxiliary goals to this project.  Using Python should make this more accessible to programmers who are interested in language development, but are unfamiliar with Scheme.  Also I'm using this project as a way to familiarize myself with branching and merging in git, so each post will correspond to a branch in the repository.
+
+All the code for this project will be hosted on GitHub.  The code is licensed under a BSD license if you are interested in forking it for any reason.  
+
+This series will focus on building a very simple interpreter for the purpose of learning the steps involved in building one.  For this reason there will be no/very little error checking or optimization.  This port will be slightly more complicated than Scheme in Scheme so if you are interested in an even simpler interpreter look <a href="http://nickzarr.com/blog4/series/lispy-in-scheme/" title="Lispy in Scheme">here</a>.
 
 With that out of the way, here's an example session:
 
@@ -57,16 +51,6 @@ world
 7
 
 
-The entire project is comprised of 260 lines of code, not including whitespace, 
-comments and tests.  The code was written so that novice programmers could 
-understand it.
-
-There will be some additional development on this codebase, however this 
-project is near completion (with the exception of the tutorial series).  There 
-will be no attempt at implementing a large subset of the Scheme standard.  
-This is by design, as it will allow the reader to experiment with 
-implementation of language features on their own.
-
-
 
 (c)2011 Nick Zarczynski
+License: BSD
