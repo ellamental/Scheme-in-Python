@@ -13,7 +13,7 @@ Bootstrap Scheme by Peter Michaux found at
 http://michaux.ca/articles/scheme-from-scratch-introduction
 """
 
-from scheme_types import Symbol
+from scheme_types import Symbol, the_empty_list
 
 def is_delimiter(c):
   """Is c a valid expression delimiter?"""
@@ -77,6 +77,12 @@ def read_string(f):
     c = f.getc()
   return ''.join(buf)
 
+def read_pair(f):
+  f.remove_whitespace()
+  c = f.getc()
+  if c == ')':
+    return the_empty_list
+
 def scheme_read(f):
   f.remove_whitespace()
   c = f.getc()
@@ -99,5 +105,7 @@ def scheme_read(f):
     return Symbol(read_symbol(f))
   elif c == '\"':
     return read_string(f)
+  elif c == '(':
+    return read_pair(f)
   else:
     return "scheme_read: not implemented"
