@@ -32,6 +32,10 @@ def read_number(f):
   else:
     return int(buf)
 
+def read_character(f):
+  c = f.getc()
+  return c
+
 def scheme_read(f):
   f.remove_whitespace()
   c = f.getc()
@@ -45,6 +49,8 @@ def scheme_read(f):
       return True
     elif c == 'f':
       return False
+    elif c == '\\':
+      return read_character(f)
     else:
       return "Error boolean value must be #t or #f not #" + c
   else:
