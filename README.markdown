@@ -1,4 +1,4 @@
-This is a simple Scheme interpreter written in Python.
+This is a simple Scheme interpreter written in Python.  There is also a <a href="http://nickzarr.com/blog4/series/scheme-in-python/">blog series detailing the development of this interpreter</a>.
 
 The Scheme in Python project is a port of the <a href="http://nickzarr.com/blog4/series/lispy-in-scheme/" title="Lispy in Scheme">Scheme in Scheme</a> project.  The goal is to implement a small subset of Scheme as an interpreter written in Python.
 
