@@ -12,6 +12,7 @@ This series will focus on building a very simple interpreter for the purpose of 
 
 With that out of the way, here's an example session:
 
+
     /code/Scheme in Python$ python scheme.py
     > 42
     42
