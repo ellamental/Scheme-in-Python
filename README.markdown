@@ -12,43 +12,43 @@ This series will focus on building a very simple interpreter for the purpose of 
 
 With that out of the way, here's an example session:
 
-/code/Scheme in Python$ python scheme.py
-> 42
-42
-> -.42
--0.42
-> 4/2
-rationals not implemented
-> #t
-True
-> #f
-False
-> #\a
-a
-> #\space
- 
-> hello
-Error: Unbound symbol: hello
-> (define hello "world")
+    /code/Scheme in Python$ python scheme.py
+    > 42
+    42
+    > -.42
+    -0.42
+    > 4/2
+    rationals not implemented
+    > #t
+    True
+    > #f
+    False
+    > #\a
+    a
+    > #\space
+    
+    > hello
+    Error: Unbound symbol: hello
+    > (define hello "world")
 
-> hello
-world
-> (if #t 1 0)
-1
-> (if #f 1 0)
-0
-> (+ 3 4)
-7
-> ((fn (x) x) 42)
-42
-> (define echo (fn (x) x))
+    > hello
+    world
+    > (if #t 1 0)
+    1
+    > (if #f 1 0)
+    0
+    > (+ 3 4)
+    7
+    > ((fn (x) x) 42)
+    42
+    > (define echo (fn (x) x))
 
-> (echo 42)
-42
-> (define add (fn (x y) (+ x y)))
+    > (echo 42)
+    42
+    > (define add (fn (x y) (+ x y)))
 
-> (add 3 4)
-7
+    > (add 3 4)
+    7
 
 
 
