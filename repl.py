@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 repl.py
 (c)2011 Nick Zarczynski
