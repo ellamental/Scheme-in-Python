@@ -7,4 +7,7 @@ from scheme_eval import scheme_eval
 """
 
 def scheme_eval(expr):
-  return expr
+  if type(expr) is int:
+    return expr
+  else:
+    return "scheme_eval: not implemented"
