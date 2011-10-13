@@ -8,7 +8,7 @@ from scheme_eval import scheme_eval
 
 from scheme_types import Symbol, Pair
 
-frame = {'test':"Value retrieved successfully"}
+frame = {}
 
 def lookup_symbol_value(symbol):
   try:
