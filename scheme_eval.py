@@ -27,7 +27,8 @@ def scheme_eval(expr):
     return lookup_symbol_value(expr)
   elif type(expr) is Pair:
     if expr.car == "define":
-      return "set the value of the symbol"
+      frame[expr.cdr.car] = scheme_eval(expr.cdr.cdr.car)
+      return "set symbol -> value"
     else:
       return "scheme_eval: not implemented"
   else:
