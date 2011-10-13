@@ -6,6 +6,13 @@ For most code you should import this as:
 from scheme_eval import scheme_eval
 """
 
+from scheme_types import Symbol
+
+frame = {'test':"Value retrieved successfully"}
+
+def lookup_symbol_value(symbol):
+  return "Here's where we lookup the value of the symbol."
+
 def self_evaluating(expr):
   t = type(expr)
   return t is int or t is float or t is str or t is bool
@@ -13,5 +20,7 @@ def self_evaluating(expr):
 def scheme_eval(expr):
   if self_evaluating(expr):
     return expr
+  elif type(expr) is Symbol:
+    return lookup_symbol_value(expr)
   else:
     return "scheme_eval: not implemented"
