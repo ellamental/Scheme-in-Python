@@ -6,7 +6,7 @@ For most code you should import this as:
 from scheme_eval import scheme_eval
 """
 
-from scheme_types import Symbol
+from scheme_types import Symbol, Pair
 
 frame = {'test':"Value retrieved successfully"}
 
@@ -25,5 +25,10 @@ def scheme_eval(expr):
     return expr
   elif type(expr) is Symbol:
     return lookup_symbol_value(expr)
+  elif type(expr) is Pair:
+    if expr.car == "define":
+      return "set the value of the symbol"
+    else:
+      return "scheme_eval: not implemented"
   else:
     return "scheme_eval: not implemented"
