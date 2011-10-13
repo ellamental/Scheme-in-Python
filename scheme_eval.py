@@ -11,7 +11,10 @@ from scheme_types import Symbol
 frame = {'test':"Value retrieved successfully"}
 
 def lookup_symbol_value(symbol):
-  return "Here's where we lookup the value of the symbol."
+  try:
+    return frame[symbol]
+  except KeyError:
+    return "Error: Unbound variable"
 
 def self_evaluating(expr):
   t = type(expr)
