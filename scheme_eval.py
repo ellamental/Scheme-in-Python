@@ -29,7 +29,15 @@ def scheme_eval(expr):
     if expr.car == "define":
       frame[expr.cdr.car] = scheme_eval(expr.cdr.cdr.car)
       return "set symbol -> value"
+    elif expr.car == "if":
+      return apply_if(expr.cdr.car, expr.cdr.cdr.car, expr.cdr.cdr.cdr.car)
     else:
       return "scheme_eval: not implemented"
   else:
     return "scheme_eval: not implemented"
+
+def apply_if(predicate, consequent, alternate):
+  if scheme_eval(predicate):
+    return scheme_eval(consequent)
+  else:
+    return scheme_eval(alternate)
