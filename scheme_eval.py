@@ -9,6 +9,7 @@ from scheme_eval import scheme_eval
 from scheme_types import Symbol, Pair
 
 frame = {}
+special_forms = {}
 
 def lookup_symbol_value(symbol):
   try:
@@ -26,18 +27,22 @@ def scheme_eval(expr):
   elif type(expr) is Symbol:
     return lookup_symbol_value(expr)
   elif type(expr) is Pair:
-    if expr.car == "define":
-      frame[expr.cdr.car] = scheme_eval(expr.cdr.cdr.car)
-      return "set symbol -> value"
-    elif expr.car == "if":
-      return apply_if(expr.cdr.car, expr.cdr.cdr.car, expr.cdr.cdr.cdr.car)
+    if expr.car in special_forms:
+      return special_forms[expr.car](expr.cdr)
     else:
-      return "scheme_eval: not implemented"
+      return "Error: unbound special form"
   else:
     return "scheme_eval: not implemented"
 
-def apply_if(predicate, consequent, alternate):
-  if scheme_eval(predicate):
-    return scheme_eval(consequent)
+def define(expr):
+  frame[expr.car] = scheme_eval(expr.cdr.car)
+  return "set symbol -> value"
+
+def apply_if(expr):
+  if scheme_eval(expr.car):
+    return scheme_eval(expr.cdr.car)
   else:
-    return scheme_eval(alternate)
+    return scheme_eval(expr.cdr.cdr.car)
+
+special_forms['define'] = define
+special_forms['if'] = apply_if
