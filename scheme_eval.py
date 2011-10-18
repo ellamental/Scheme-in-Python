@@ -34,6 +34,13 @@ def scheme_eval(expr):
   else:
     return "scheme_eval: not implemented"
 
+def special_form_handler(expr):
+  """Register a symbol with a Python function named "f" that implements a special form"""
+  exec(expr.cdr.car)
+  special_forms[expr.car] = f
+
+special_forms['scheme-syntax'] = special_form_handler
+
 def define(expr):
   frame[expr.car] = scheme_eval(expr.cdr.car)
   return "set symbol -> value"
