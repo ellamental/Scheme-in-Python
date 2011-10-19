@@ -40,16 +40,3 @@ def special_form_handler(expr):
   special_forms[expr.car] = f
 
 special_forms['scheme-syntax'] = special_form_handler
-
-def define(expr):
-  frame[expr.car] = scheme_eval(expr.cdr.car)
-  return "set symbol -> value"
-
-def apply_if(expr):
-  if scheme_eval(expr.car):
-    return scheme_eval(expr.cdr.car)
-  else:
-    return scheme_eval(expr.cdr.cdr.car)
-
-special_forms['define'] = define
-special_forms['if'] = apply_if
