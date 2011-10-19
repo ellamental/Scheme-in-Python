@@ -9,9 +9,14 @@ A simple repl
 
 import sys
 from scheme_read import scheme_read
-from scheme_eval import scheme_eval
+from scheme_eval import scheme_eval, special_forms
+from scheme_types import Pair
 from buffered_input import Buff
 
+special_forms['load'](Pair("syntax.scm", None))
+
 while True:
-  print "> ", 
-  print scheme_eval(scheme_read(Buff(sys.stdin)))
+  inp = scheme_read(Buff(sys.stdin))
+  if inp != None:
+    print ';===>', scheme_eval(inp)
+
