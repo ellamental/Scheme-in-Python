@@ -7,6 +7,8 @@ from scheme_eval import scheme_eval
 """
 
 from scheme_types import Symbol, Pair
+from buffered_input import Buff
+from scheme_read import scheme_read
 
 frame = {}
 special_forms = {}
@@ -39,4 +41,14 @@ def special_form_handler(expr):
   exec(expr.cdr.car)
   special_forms[expr.car] = f
 
+def load(expr):
+  """Given a filename, open it and eval each expression in the global_environment"""
+  f = open(expr.car, 'r')
+  b = Buff(f)
+  while b.peek():
+    scheme_eval(scheme_read(b))
+    b.remove_whitespace()
+  f.close()
+
 special_forms['scheme-syntax'] = special_form_handler
+special_forms['load'] = load
