@@ -16,7 +16,7 @@ from buffered_input import Buff
 special_forms['load'](Pair("syntax.scm", None))
 
 while True:
-  inp = scheme_read(Buff(sys.stdin))
+  inp = scheme_eval(scheme_read(Buff(sys.stdin)))
   if inp != None:
-    print ';===>', scheme_eval(inp)
+    print ';===>', inp
 
