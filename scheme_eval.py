@@ -10,7 +10,7 @@ from scheme_types import Symbol, Pair, Primitive
 from buffered_input import Buff
 from scheme_read import scheme_read
 
-frame = {'+':Primitive(lambda x,y: x+y)}
+frame = {}
 special_forms = {}
 
 def lookup_symbol_value(symbol):

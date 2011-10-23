@@ -1,3 +1,8 @@
+(scheme-syntax define-primitive "
+def f(expr):
+  frame[expr.car] = Primitive(eval(expr.cdr.car))
+")
+
 (scheme-syntax define "
 def f(expr):
   frame[expr.car] = scheme_eval(expr.cdr.car)
