@@ -1,11 +1,11 @@
 (scheme-syntax define-primitive "
 def f(expr):
-  frame[expr.car] = Primitive(eval(expr.cdr.car))
+  set_symbol(expr.car, Primitive(eval(expr.cdr.car)), global_environment)
 ")
 
 (scheme-syntax define "
 def f(expr):
-  frame[expr.car] = scheme_eval(expr.cdr.car)
+  set_symbol(expr.car, scheme_eval(expr.cdr.car), global_environment)
 ")
 
 (scheme-syntax if "
