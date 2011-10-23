@@ -40,7 +40,7 @@ def scheme_apply(proc, args):
   if type(proc) is Primitive:
     return apply(proc.fn, args)
   else:
-    return "apply: not implemented"
+    return "Error: Undefined procedure"
 
 def special_form_handler(expr):
   """Register a symbol with a Python function named "f" that implements a special form"""
