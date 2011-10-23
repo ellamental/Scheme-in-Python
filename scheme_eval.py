@@ -51,16 +51,16 @@ def self_evaluating(expr):
   t = type(expr)
   return t is int or t is float or t is str or t is bool
 
-def scheme_eval(expr):
+def scheme_eval(expr, env):
   if self_evaluating(expr):
     return expr
   elif type(expr) is Symbol:
-    return lookup_symbol_value(expr, global_environment)
+    return lookup_symbol_value(expr, env)
   elif type(expr) is Pair:
     if expr.car in special_forms:
-      return special_forms[expr.car](expr.cdr)
+      return special_forms[expr.car](expr.cdr, env)
     else:
-      return scheme_apply(scheme_eval(expr.car), [scheme_eval(a) for a in expr.cdr])
+      return scheme_apply(scheme_eval(expr.car, env), [scheme_eval(a, env) for a in expr.cdr])
   else:
     return "scheme_eval: not implemented"
 
@@ -74,7 +74,7 @@ def scheme_apply(proc, args):
 ## Builtin Syntax
 ##############################################################################
 
-def special_form_handler(expr):
+def special_form_handler(expr, env):
   """Register a symbol with a Python function named "f" that implements a special form"""
   exec(expr.cdr.car)
   special_forms[expr.car] = f
@@ -84,7 +84,7 @@ def load(expr):
   f = open(expr.car, 'r')
   b = Buff(f)
   while b.peek():
-    scheme_eval(scheme_read(b))
+    scheme_eval(scheme_read(b), global_environment)
     b.remove_whitespace()
   f.close()
 
