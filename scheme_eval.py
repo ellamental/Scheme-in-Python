@@ -10,6 +10,10 @@ from scheme_types import Symbol, Pair, Primitive, the_empty_list
 from buffered_input import Buff
 from scheme_read import scheme_read
 
+##############################################################################
+## Environments
+##############################################################################
+
 def current_environment(env):
   """Return the frame of the current environment"""
   return env.car
@@ -39,6 +43,10 @@ def lookup_symbol_value(symbol, environment):
       env = enclosing_environment(env)
   return "Error: Unbound symbol: " + symbol
 
+##############################################################################
+## Eval and Apply
+##############################################################################
+
 def self_evaluating(expr):
   t = type(expr)
   return t is int or t is float or t is str or t is bool
@@ -61,6 +69,10 @@ def scheme_apply(proc, args):
     return apply(proc.fn, args)
   else:
     return "Error: Undefined procedure"
+
+##############################################################################
+## Builtin Syntax
+##############################################################################
 
 def special_form_handler(expr):
   """Register a symbol with a Python function named "f" that implements a special form"""
