@@ -6,11 +6,11 @@ For most code you should import this as:
 from scheme_eval import scheme_eval
 """
 
-from scheme_types import Symbol, Pair
+from scheme_types import Symbol, Pair, Primitive
 from buffered_input import Buff
 from scheme_read import scheme_read
 
-frame = {}
+frame = {'+':Primitive(lambda x,y: x+y)}
 special_forms = {}
 
 def lookup_symbol_value(symbol):
@@ -32,9 +32,15 @@ def scheme_eval(expr):
     if expr.car in special_forms:
       return special_forms[expr.car](expr.cdr)
     else:
-      return "Error: unbound special form"
+      return scheme_apply(scheme_eval(expr.car), [scheme_eval(a) for a in expr.cdr])
   else:
     return "scheme_eval: not implemented"
+
+def scheme_apply(proc, args):
+  if type(proc) is Primitive:
+    return apply(proc.fn, args)
+  else:
+    return "apply: not implemented"
 
 def special_form_handler(expr):
   """Register a symbol with a Python function named "f" that implements a special form"""

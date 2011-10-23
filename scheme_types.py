@@ -27,3 +27,7 @@ class Pair(object):
       x = x.cdr
   def __repr__(self):
     return "(" + ' '.join([str(i) for i in list(self)]) + ")"
+
+class Primitive(object):
+  def __init__(self, fn):
+    self.fn = fn
