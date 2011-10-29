@@ -6,7 +6,7 @@ For most code you should import this as:
 from scheme_eval import scheme_eval
 """
 
-from scheme_types import Symbol, Pair, Primitive, the_empty_list
+from scheme_types import Symbol, Pair, Primitive, the_empty_list, Procedure
 from buffered_input import Buff
 from scheme_read import scheme_read
 
@@ -67,6 +67,9 @@ def scheme_eval(expr, env):
 def scheme_apply(proc, args):
   if type(proc) is Primitive:
     return apply(proc.fn, args)
+  elif type(proc) is Procedure:
+    new_env = extend_environment(dict(zip(proc.parameters, args)), proc.environment)
+    return [scheme_eval(e,new_env) for e in proc.body][-1]
   else:
     return "Error: Undefined procedure"
 

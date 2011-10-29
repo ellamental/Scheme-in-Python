@@ -15,3 +15,8 @@ def f(expr, env):
   else:
     return scheme_eval(expr.cdr.cdr.car, env)
 ")
+
+(scheme-syntax lambda "
+def f(expr, env):
+  return Procedure(expr.car, expr.cdr, env)
+")
