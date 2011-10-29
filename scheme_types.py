@@ -31,3 +31,9 @@ class Pair(object):
 class Primitive(object):
   def __init__(self, fn):
     self.fn = fn
+
+class Procedure(object):
+  def __init__(self, parameters, body, environment):
+    self.parameters = parameters
+    self.body = body
+    self.environment = environment
